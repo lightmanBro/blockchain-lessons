@@ -1,5 +1,5 @@
 # blockchain-lesson-1
-
+## SIMPLE BLOCKCHAIN ##
 🚀 Run
 cargo new simple_blockchain
 cd simple_blockchain
