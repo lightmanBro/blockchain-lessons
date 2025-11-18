@@ -1,6 +1,6 @@
 // ---------- IMPORTS ----------
-use sha2::{Sha256, Digest};
 use chrono::prelude::*;
+use sha2::{Sha256, Digest};
 
 // This struct represents a single block in the blockchain.
 #[derive(Debug, Clone)]
@@ -130,4 +130,7 @@ fn main() {
     blockchain.add_block("Bob paid Charlie 2 BTC".to_string());
 
     println!("Blockchain valid? {}", blockchain.is_valid());
+    for block in blockchain.chain{
+        println!("{:?}",block)
+    }
 }
