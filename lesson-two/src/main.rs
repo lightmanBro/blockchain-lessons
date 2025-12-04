@@ -93,8 +93,8 @@ impl Blockchain {
         genesis.hash = genesis.calculate_hash();
         self.chain.push(genesis);
     }
-    fn latest_block(&self){
-        self.chain.last().unwrap();
+    fn latest_block(&self) -> &Block {
+        return self.chain.last().unwrap();
     }
 
     // Add a new block
@@ -108,7 +108,7 @@ impl Blockchain {
     }
 
     //Check if a block is valid
-    fn is_valid(&self) -> bool {
+    fn is_valid(&self) -> bool  {
         for i in 1..self.chain.len() {
             let prev = &self.chain[i - 1];//get the last block in the blockchain
             let current = &self.chain[i]; //get the current block being accessed by the loop;
@@ -132,7 +132,12 @@ fn main() {
     let mut blockchain = Blockchain::new(); // difficulty = 4
     blockchain.add_block("User A pays User B 5 coins".into());
     blockchain.add_block("User C pays User D 2 coins".into());
-
+    blockchain.is_valid();
+    blockchain.latest_block();
+    // print is blockchain valid
+    println!("Is blockchain valid? {}", blockchain.is_valid());
+    // Print the latest block
+    println!("Latest block: {:#?}", blockchain.latest_block());
     // Print the blockchain
     for block in blockchain.chain {
         println!("=========================================");
@@ -142,5 +147,6 @@ fn main() {
         println!("Previous Hash: {}", block.previous_hash);
         println!("Nonce: {}", block.nonce);
         println!("Effort Used (Attempts): {}", block.effort_used); // <--- effort shown
+        println!("Timestamp: {}", block.timestamp);
     }
 }
